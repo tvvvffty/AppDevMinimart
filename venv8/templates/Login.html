@@ -1,0 +1,44 @@
+{% extends "includes/_navbar3.html "%}
+{% block title %}App Development Project Prototype - Sign Up{% endblock %}
+
+{% block content %}
+{% from "includes/_formHelper.html" import render_field %}
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+<title>Bootstrap Simple Registration Form</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/login.css') }}">
+
+</head>
+<body>
+
+<div class="signup-form">
+   <h1 class="display-4">Sign In Into Your Account</h1>
+  <h2>Sign In</h2>
+    <form method="POST" action="">
+        <div class="row">
+  <div class="form-group">
+    {{ render_field(form.email, class="form-control") }}
+  </div>
+  <div class="form-group">
+    {{ render_field(form.password, class="form-control") }}
+  </div>
+  <a class="button-link" href="/forgetpass">Forgot Password? Click Here</a>
+  <br>
+  <a class="button-link" href="/UserSignUp">Create An Account</a>
+  <br> <br>
+  <input type="submit" value="Submit" class="btn btn-primary"/>
+        </div>
+
+</form>
+</div>
+</body>
+</html>
+{% endblock %}

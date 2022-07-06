@@ -1,0 +1,28 @@
+{% extends "includes/_navbar.html "%}
+{% block content %}
+{% from "includes/_formHelper.html" import render_field %}
+
+<h1 class="display-4">Update Promo Code</h1>
+
+<form method="POST" action="">
+  <div class="form-group">
+    {{ render_field (form.name, class="form-control") }}
+  </div>
+  <div class="form-group">
+    {{ render_field (form.value, class="form-control") }}
+  </div>
+    <div class="form-group">
+      {{ render_field (form.promoCode, class="form-control") }}
+    </div>
+    <div class="form-group">
+      {{ render_field (form.quantity, class="form-control") }}
+    </div>
+  <div class="form-group">
+      {{ render_field (form.expiryDate, class="form-control") }}
+  </div>
+    <div class="form-group">
+      {{ render_field (form.category, class="form-control") }}
+    </div>
+  <input type="submit" value="Submit" class="btn btn-primary"/>
+</form>
+{% endblock %}

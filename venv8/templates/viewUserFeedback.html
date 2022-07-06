@@ -1,0 +1,44 @@
+{% extends "includes/_navbar.html "%}
+{% block content %}
+<div class="col-sm-4" style="position:relative; text-align:left; padding:25px;">
+</div>
+<h1 class="display-4">View CustomerFeedback</h1>
+<div>
+      {% if count == 0 %}
+  <p>There are no vouchers.</p>
+  {% elif count == 1 %}
+  <p>There is 1 voucher.</p>
+  {% else %}
+  <p>There are {{ count }} vouchers.</p>
+  {% endif %}
+</div>
+<div>
+  <table class="table table-striped" id = "datatablesSimple">
+    <thead>
+      <tr>
+          <th>User Email</th>
+        <th>How would you rate your experience with us ?</th>
+        <th>What is one thing you like about our online store</th>
+        <th>What is one thing you like least about our online store ?</th>
+        <th>Would you visit us again ?</th>
+        <th>What is your favourite product in out store ?</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for i in  user_feedback_list %}
+      <tr>
+          <td><p>keithlawl90@gmail.com</p></td>
+        <td>{{ i.get_cust_q1() }}</td>
+        <td>{{ i.get_cust_q2() }}</td>
+        <td>{{ i.get_cust_q3() }}</td>
+        <td>{{ i.get_cust_q4() }}</td>
+          <td>{{ i.get_cust_q5() }}</td>
+         <td>
+         </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% endfor %}
+{% endblock %}
+

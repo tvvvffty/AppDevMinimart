@@ -1,0 +1,108 @@
+{% extends "includes/_navbar2.html "%}
+{% block title %}App Development Project Prototype - View Cart{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/help.css') }}">
+                        <div class="card mb-4" style="display: block; ">
+
+                            <h1 class="display-4">Cart items</h1>
+<div>
+  {% if count == 0 %}
+  <p>There are no products.</p>
+  {% elif count == 1 %}
+  <p>There is 1 products.</p>
+  {% else %}
+  <p>There are {{ count }} products.</p>
+  {% endif %}
+</div>
+<div>
+  <table class="table table-striped" id = "datatablesSimple">
+    <thead>
+      <tr>
+        <th>products ID</th>
+        <th>Name</th>
+        <th>Brand</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total Amount</th>
+
+
+
+      </tr>
+    </thead>
+    <tbody>
+
+    {% for cart in cart_list %}
+      <tr>
+        <td>{{ cart.get_uuid() }}</td>
+        <td>{{ cart.get_name() }}</td>
+        <td>{{ cart.get_brand() }}</td>
+        <td>{{ cart.get_category() }}</td>
+        <td>{{ cart.get_price() }}</td>
+        <td>{{ cart.get_quantity() }}</td>
+        <td>{% set total_amount = [] %}
+            {%- for cart in cart.Cart -%}
+            {% if total_amount.append((cart.get_price * cart.get_quantity)) %}{% endif %}
+            {% endfor %}
+            {{("{0}").format(total_amount | sum)}}</td>
+        <td>{{ total_amt }}</td>
+
+
+        <td><a href="/updateCart/{{cart.get_uuid()}}" class="btn btn-warning">Update</a></td>
+        <td>
+          <form action="{{url_for('delete_cart', id=cart.get_uuid())}}" method="POST">
+          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal_{{cart.get_uuid()}}">
+            Delete
+          </button>
+
+
+    <!-- The Modal -->
+    <div class="modal" id="myModal_{{cart.get_uuid()}}">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Delete Confirmation</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            Are you sure you want to delete?
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <input type="submit" value="Delete" class="btn btn-danger">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </form>
+
+</td>
+
+      </tr>
+
+
+
+    {% endfor %}
+
+    </tbody>
+  </table>
+
+    <button type="button" class="btn btn-danger"><a href="/createOrder" style="color:white;">Payment</a></button>
+</div>
+
+
+                       </div>
+
+
+
+
+{% endblock %}
+

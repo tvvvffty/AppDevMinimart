@@ -1,0 +1,80 @@
+{% extends "includes/_navbar.html "%}
+{% block content %}
+<div class="col-sm-4" style="position:relative; text-align:left; padding:25px;">
+    <a href="/createPromo" type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add Reward</a>
+</div>
+
+<h1 class="display-4">Retrieve Promo Code</h1>
+<div>
+  {% if count == 0 %}
+  <p>There are no vouchers.</p>
+  {% elif count == 1 %}
+  <p>There is 1 voucher.</p>
+  {% else %}
+  <p>There are {{ count }} vouchers.</p>
+  {% endif %}
+</div>
+<div>
+  <table class="table table-striped" id = "datatablesSimple">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Value</th>
+        <th>Promo Code</th>
+        <th>Quantity</th>
+        <th>Expiration date</th>
+        <th>Category</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for i in promo_list %}
+      <tr>
+        <td>{{ i.get_name() }}</td>
+        <td>{{ i.get_value() }}</td>
+        <td>{{ i.get_promoCode() }}</td>
+        <td>{{ i.get_quantity() }}</td>
+        <td>{{ i.get_expiryDate() }}</td>
+        <td>{{ i.get_category() }}</td>
+          <td>
+             <!-- Call to action buttons -->
+             <ul class="list-inline m-0">
+                 <li class="list-inline-item">
+                     <a  href="/updatePromo/{{i.get_promo_id()}}" >
+                     <button class="btn btn-success btn-sm rounded-0" type="submit" data-toggle="tooltip" data-placement="top" title="Update"><i class="fa fa-edit"></i></button>
+                 </a></li>
+                 <li class="list-inline-item">
+                     <form action="{{url_for('delete_promo', id=i.get_promo_id())}}"  method="POST">
+<!--                         Button To Open Modal-->
+                        <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-bs-toggle="modal" data-placement="top" title="Delete" data-bs-target="#myModal_{{i.get_promo_id()}}"><i class="fa fa-trash"></i></button>                                                  <!-- The Modal -->
+    <div class="modal" id="myModal_{{i.get_promo_id()}}">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Delete Confirmation</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            Are you sure you want to delete a standard {{i.get_name()}} reward?
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <input type="submit" value="Delete" class="btn btn-danger">
+            <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancel</button>
+          </div>
+    {% endfor %}
+        </div>
+      </div>
+    </div>
+                     </form>
+                 </li>
+             </ul>
+         </td>
+    </tbody>
+  </table>
+  </div>
+{% endblock %}

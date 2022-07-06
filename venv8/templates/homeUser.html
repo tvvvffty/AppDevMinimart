@@ -1,0 +1,44 @@
+{% extends "includes/_navbar2.html "%}
+{% block title %}App Development Project Prototype - Home User{% endblock %}
+
+{% block content %}
+
+<div class="container">
+<div class="row">
+
+{% for products in products_list %}
+    {% if products.get_status() == 'status text-success' %}
+<div class="col-md-3 col-sm-3 col-xs-12 image-main-section">
+<div class="row img-part">
+<div class="col-md-12 col-sm-12 colxs-12 img-section">
+<img class="img-responsive" src="{{url_for('static', filename='assets/profimg/' + products.get_picture())}}"/>
+</div>
+<div style="text-align: center"  class="col-md-12 col-sm-12 col-xs-12 image-title">
+<h3>{{ products.get_name() }}</h3>
+</div>
+<div class="col-md-12 col-sm-12 col-xs-12 image-description">
+<p style="font-size:1.9em; text-align: center;">SGD ${{ products.get_price() }}</p>
+</div>
+<div style="text-align: center;" class="col-md-12 col-sm-12 col-xs-12">
+<a href="createCart/{{ products.get_uuid() }} " class="btn btn-success add-cart-btn">ADD TO CART</a>
+</div>
+</div>
+</div>
+    {% else %}
+
+    {% endif %}
+{% endfor %}
+
+
+
+</div>
+</div>
+<p>Logged in User</p>
+{% endblock %}
+
+
+
+
+
+
+

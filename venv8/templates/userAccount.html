@@ -1,0 +1,13 @@
+{% extends "includes/_navbar2.html "%}
+{% block title %}App Development Project Prototype - User Account Management{% endblock %}
+
+{% block content %}
+<h2 class="display-4">Welcome User</h2>
+<hr>
+<p>My Profile</p>
+<a class="button-link" href="/userProfile/{{session['email']}}">View</a>
+<br> <br>
+<p>Update Password</p>
+<a class="button-link" href="/userPassword/{{session['email']}}">View</a>
+<br> <br>
+{% endblock %}

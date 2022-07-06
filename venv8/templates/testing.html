@@ -1,0 +1,12 @@
+{% extends "includes/_navbar.html "%}
+{% block content %}
+{% from "includes/_formHelper.html" import render_field %}
+<h1 class="display-4">Create Special Reward</h1>
+
+<form method="POST" action="">
+  <div class="form-group">
+   {{ form.dropdown (class="form-control") }}
+  </div>
+  <input type="submit" value="Submit" class="btn btn-primary"/>
+</form>
+{% endblock %}

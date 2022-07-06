@@ -1,0 +1,67 @@
+{% extends "includes/_navbar2.html "%}
+
+
+
+{% block content %}
+<a href="/userAccount"><button type="button" class="btn btn-primary">Back</button></a>
+<div class="container-prof" style="padding:50px 0px 0px 100px;">
+<h1 class="display-4" style="text-decoration: underline; padding:50px 0px 40px 0px;" ><i class="fas fa-user-circle"></i>My Profile/My Account <a href="/updateProfile/{{session['email']}}" class="btn btn-warning"style="margin: 0px 0px 0px 640px;">Update</a></h1>
+
+<div>
+    <hr style="width:95%; height:5px;">
+
+
+    <h5>Address: </h5>
+    <h6>{{address}}</h6>
+    <hr style="width:95%; height:5px;">
+
+    <h5>Phone Number:</h5>
+    <h6>{{phone}}</h6>
+    <hr style="width:95%; height:5px;">
+
+    <h5>Unit Number:</h5>
+    <h6>{{unit}}</h6>
+    <hr style="width:95%; height:5px;">
+
+    <h5>Postal Code:</h5>
+    <h6>{{postal}}</h6>
+    <hr style="width:95%; height:5px;">
+
+<form action="{{url_for('delete_user', email=pemail)}}"  method="POST">
+
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal_{{first_name}}">
+      Delete
+    </button>
+
+    <!-- The Modal -->
+    <div class="modal" id="myModal_{{first_name}}">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Delete Confirmation</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            Are you sure you want to delete {{address}}?
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <input type="submit" value="Delete" class="btn btn-danger">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+          </form>
+        </div>
+</div>
+
+{% endblock %}
+

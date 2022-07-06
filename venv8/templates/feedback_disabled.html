@@ -1,0 +1,100 @@
+{% extends "includes/_navbar.html" %}
+{% block content %}
+{% from "includes/_formHelper.html" import render_field %}
+{% for message in get_flashed_messages() %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/star.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/yes_no.css') }}">
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+<symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+  </symbol>
+</svg>
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    {{ message }}
+  </div>
+{% endfor %}
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="q1_tab" data-bs-toggle="tab" data-bs-target="#q1" type="button" role="tab" aria-controls="q1" aria-selected="true">Star Rating</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="q2_tab" data-bs-toggle="tab" data-bs-target="#q2" type="button" role="tab" aria-controls="q2" aria-selected="false">Open-Ended</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="q3_tab" data-bs-toggle="tab" data-bs-target="#q3" type="button" role="tab" aria-controls="q3" aria-selected="false">Open-Ended</button>
+  </li>
+   <li class="nav-item" role="presentation">
+    <button class="nav-link" id="q4_tab" data-bs-toggle="tab" data-bs-target="#q4" type="button" role="tab" aria-controls="q4" aria-selected="false">Yes/No</button>
+  </li>
+   <li class="nav-item" role="presentation">
+    <button class="nav-link" id="q5_tab" data-bs-toggle="tab" data-bs-target="#q5" type="button" role="tab" aria-controls="q5" aria-selected="false">Products Dropdown List</button>
+  </li>
+</ul>
+  <form method="POST">
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="q1" role="tabpanel" aria-labelledby="q1_tab">
+  <div class="form-group">
+    {{ render_field (form.q1 ,class="form-control") }}
+    <div class="rating">
+<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+</div>
+  </div>
+  </div>
+  <div class="tab-pane fade" id="q2" role="tabpanel" aria-labelledby="q2_tab">
+  <div class="form-group">
+    {{ render_field (form.q2 ,class="form-control") }}
+    <br>
+    <div class="open_ended">
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" readonly>An example of text in textarea.</textarea>
+</div>
+  </div>
+    <br>
+</div>
+  <div class="tab-pane fade" id="q3" role="tabpanel" aria-labelledby="q3_tab">
+  <div class="form-group">
+    {{ render_field (form.q3 ,class="form-control") }}
+    <br>
+    <div class="open_ended">
+    <textarea class="form-control" id="exampleFormControlTextarea2" rows="3" readonly>An example of text in textarea.</textarea>
+</div>
+  </div>
+    <br>
+  </div>
+  <div class="tab-pane fade" id="q4" role="tabpanel" aria-labelledby="q4_tab">
+  <div class="form-group_1">
+    {{ render_field (form.q4 ,class="form-control") }}
+    <div class="yes/no">
+  <input type="radio" name="rdo" id="yes" checked>
+  <input type="radio" name="rdo" id="no">
+    <div class="switch">
+      <label for="yes">Yes</label>
+      <label for="no">No</label>
+      <span></span>
+    </div>
+    </div>
+  </div>
+    <br><br><br><br>
+  </div>
+  <div class="tab-pane fade" id="q5" role="tabpanel" aria-labelledby="q5_tab">
+  <div class="form-group">
+    {{ render_field (form.q5 ,class="form-control") }}
+    <br>
+  <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown List
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Product 1</a>
+    <a class="dropdown-item" href="#">Product 2</a>
+    <a class="dropdown-item" href="#">Product 3</a>
+  </div>
+</div>
+</div>
+    <br>
+    <input type="submit" value="Submit" class="btn btn-primary" disabled/>
+  </div>
+</div>
+  </form>
+{% endblock %}

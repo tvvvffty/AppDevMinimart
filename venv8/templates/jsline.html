@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<script>
+    // get unique value of array
+    function onlyUnique(lenval, index, self) {
+    return self.indexOf(lenval) === index;
+      }
+    var mon_unique = month.filter( onlyUnique );
+province.forEach((pro, index) => {
+      if (pro =="Alberta") {
+      ab_val.push(value[index]);
+    } else if (pro =="BC") {
+      BC_val.push(value[index]);
+    } else if (pro =="Manitoba") {
+      mb_val.push(value[index]);
+    } else if (pro =="New Brunswick") {
+      nb_val.push(value[index]);
+    }
+     else {
+      nl_val.push(value[index]);
+    }
+    });
+
+    // Line chart
+    new Chart(document.getElementById("myCanvas"), {
+  type: 'line',
+  data: {
+    labels: mon_unique,
+    datasets: [{
+        data: ab_val,
+        label: "Alberta",
+        borderColor: "#3e95cd",
+        fill: false
+      }, {
+        data: BC_val,
+        label: "BC",
+        borderColor: "#8e5ea2",
+        fill: false
+      }, {
+        data: mb_val,
+        label: "Manitoba",
+        borderColor: "#3cba9f",
+        fill: false
+      }, {
+        data: nb_val,
+        label: "New Brunswick",
+        borderColor: "#e8c3b9",
+        fill: false
+      }, {
+        data: nl_val,
+        label: "NL",
+        borderColor: "#c45850",
+        fill: false
+      }
+    ]
+  },
+  options: {
+    title: {
+      display: true,
+      text: 'Positive Cases of COVID in provinces of Canada'
+    },
+    hover: {
+     mode: 'index',
+     intersect: true
+    },
+  }
+});
+</script>
+</body>
+</html>
